@@ -25,7 +25,6 @@
 
 
     <script>
-        // 1. CARREGAR CONFIGURAÇÕES
         const storedConfig = localStorage.getItem('singleCounterConfig');
         let config;
 
@@ -38,7 +37,6 @@
 
         const targetDateTimestamp = new Date(config.targetDate).getTime(); 
 
-        // 2. APLICAÇÃO DOS DADOS NA PÁGINA
         document.getElementById('event-reason').innerText = config.eventReason;
         document.getElementById('pageTitle').innerText = `Contador | ${config.eventReason}`;
         
@@ -47,7 +45,6 @@
         });
         document.getElementById('target-date-display').innerText = `Data Alvo: ${formattedDate}`;
 
-        // 3. FUNÇÃO DE CONTAGEM REGRESSIVA
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDateTimestamp - now; 

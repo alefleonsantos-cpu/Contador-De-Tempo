@@ -1,8 +1,7 @@
-/* Paleta Limpa: Azul Ciano (Fundo/Destaque) e Cinza Escuro (Texto) */
 :root {
-    --primary-color: #3498db; /* Azul de destaque */
-    --background-color: #ecf0f1; /* Fundo cinza muito claro (usado para o gradiente) */
-    --text-color: #34495e; /* Texto escuro */
+    --primary-color: #3498db;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
     --card-bg: #ffffff; 
 }
 
@@ -14,19 +13,16 @@
 }
 
 body {
-    /* NOVO: Fundo com degradê suave */
     background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%); 
-    
     color: var(--text-color);
     line-height: 1.6;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ocupa a altura total da tela */
-    margin: 0; /* Garante que o gradiente cubra toda a tela */
+    min-height: 100vh;
+    margin: 0;
 }
 
-/* --- CONTEÚDO CENTRALIZADO --- */
 .center-content {
     display: flex;
     justify-content: center;
@@ -34,7 +30,6 @@ body {
     width: 100%;
 }
 
-/* --- QUADRO PRINCIPAL (Contador e Configuração) --- */
 .countdown-card, .config-container {
     background-color: var(--card-bg);
     border: 5px solid var(--primary-color);
@@ -58,7 +53,6 @@ body {
     font-style: italic;
 }
 
-/* --- DISPLAY DO TEMPORIZADOR --- */
 .timer-display {
     display: flex;
     justify-content: space-between;
@@ -93,9 +87,8 @@ body {
     color: var(--text-color);
 }
 
-/* Estilo para quando a contagem terminar */
 .finished {
-    border-color: #e74c3c; /* Borda vermelha */
+    border-color: #e74c3c;
 }
 
 .finished .message {
@@ -103,35 +96,10 @@ body {
     font-size: 1.2em;
 }
 
-/* Link de edição */
 .edit-link {
     display: block;
     margin-top: 30px;
     color: #3498db;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s;
-}
-
-.edit-link:hover {
-    color: #2980b9;
-}
-
-/* --- RESPONSIVIDADE --- */
-@media (max-width: 550px) {
-    .countdown-card, .config-container {
-        padding: 30px 15px;
-    }
-    
-    .countdown-card h1 {
-        font-size: 1.8em;
-    }
-
-    .timer-display {
-        gap: 5px;
-    }
-
-    .timer-box span {
-        font-size: 1.8em;
-    }
-}
+    transition: color 0.3s
