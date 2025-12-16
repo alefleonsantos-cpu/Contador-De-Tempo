@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Contador | Carregando...</title>
+    <link rel="stylesheet" href="style_unico.css">
+</head>
+<body>
+
+    <main class="center-content">
+        <div class="countdown-card" id="main-card">
+            <h1 id="event-reason">Carregando Motivo...</h1>
+            <p id="target-date-display">Data Alvo: --/--/----</p>
+            <div class="timer-display">
+                <div class="timer-box"><span id="days">00</span><small>Dias</small></div>
+                <div class="timer-box"><span id="hours">00</span><small>Horas</small></div>
+                <div class="timer-box"><span id="minutes">00</span><small>Mins</small></div>
+                <div class="timer-box"><span id="seconds">00</span><small>Segs</small></div>
+            </div>
+            <p class="message" id="countdown-message">Contagem em andamento...</p>
+            <a href="config_unico.html" class="edit-link">✏️ Editar Evento</a>
+        </div>
+    </main>
+
+
+    <script>
+        // 1. CARREGAR CONFIGURAÇÕES
+        const storedConfig = localStorage.getItem('singleCounterConfig');
+        let config;
+
+        if (storedConfig) {
+            config = JSON.parse(storedConfig);
+        } else {
+            alert("Por favor, configure o seu evento primeiro!");
+            window.location.href = 'config_unico.html';
+        }
+
+        const targetDateTimestamp = new Date(config.targetDate).getTime(); 
+
+        // 2. APLICAÇÃO DOS DADOS NA PÁGINA
+        document.getElementById('event-reason').innerText = config.eventReason;
+        document.getElementById('pageTitle').innerText = `Contador | ${config.eventReason}`;
+        
+        const formattedDate = new Date(config.targetDate).toLocaleDateString('pt-BR', {
+            year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+        document.getElementById('target-date-display').innerText = `Data Alvo: ${formattedDate}`;
+
+        // 3. FUNÇÃO DE CONTAGEM REGRESSIVA
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDateTimestamp - now; 
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                clearInterval(countdownInterval); 
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                document.getElementById('countdown-message').innerText = `🎉 O dia do(a) ${config.eventReason} chegou! 🎉`;
+                document.getElementById('main-card').classList.add('finished');
+            } else {
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); 
+    </script>
+</body>
+</html>

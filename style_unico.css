@@ -1,0 +1,137 @@
+/* Paleta Limpa: Azul Ciano (Fundo/Destaque) e Cinza Escuro (Texto) */
+:root {
+    --primary-color: #3498db; /* Azul de destaque */
+    --background-color: #ecf0f1; /* Fundo cinza muito claro (usado para o gradiente) */
+    --text-color: #34495e; /* Texto escuro */
+    --card-bg: #ffffff; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* NOVO: Fundo com degradê suave */
+    background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%); 
+    
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa a altura total da tela */
+    margin: 0; /* Garante que o gradiente cubra toda a tela */
+}
+
+/* --- CONTEÚDO CENTRALIZADO --- */
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* --- QUADRO PRINCIPAL (Contador e Configuração) --- */
+.countdown-card, .config-container {
+    background-color: var(--card-bg);
+    border: 5px solid var(--primary-color);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.countdown-card h1 {
+    font-size: 2.2em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+#target-date-display {
+    color: #7f8c8d;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+/* --- DISPLAY DO TEMPORIZADOR --- */
+.timer-display {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.timer-box {
+    flex: 1;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 5px;
+    border-radius: 8px;
+}
+
+.timer-box span {
+    display: block;
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+.timer-box small {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8em;
+}
+
+.message {
+    margin-top: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* Estilo para quando a contagem terminar */
+.finished {
+    border-color: #e74c3c; /* Borda vermelha */
+}
+
+.finished .message {
+    color: #e74c3c;
+    font-size: 1.2em;
+}
+
+/* Link de edição */
+.edit-link {
+    display: block;
+    margin-top: 30px;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.edit-link:hover {
+    color: #2980b9;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 550px) {
+    .countdown-card, .config-container {
+        padding: 30px 15px;
+    }
+    
+    .countdown-card h1 {
+        font-size: 1.8em;
+    }
+
+    .timer-display {
+        gap: 5px;
+    }
+
+    .timer-box span {
+        font-size: 1.8em;
+    }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar Contador Único</title>
+    <link rel="stylesheet" href="style_unico.css">
+    <style>
+        /* Estilos específicos para o formulário */
+        .config-container {
+            /* Os estilos principais (borda, sombra, etc.) estão em style_unico.css */
+            margin: 100px auto; /* Mantém a centralização vertical */
+            text-align: left; /* Mantemos left para os campos */
+        }
+        
+        /* Centraliza o título H2 */
+        .config-container h2 {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        .config-container label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e; 
+        }
+
+        /* ESTILIZAÇÃO DOS INPUTS (DATA E TEXTO) */
+        .config-container input[type="datetime-local"],
+        .config-container input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 1.1em;
+            color: #2c3e50;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* EFEITO AO FOCAR (clicar no campo) */
+        .config-container input[type="datetime-local"]:focus,
+        .config-container input[type="text"]:focus {
+            border-color: #3498db; 
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.4); 
+            outline: none;
+        }
+
+        /* Estilização específica para Data/Hora (Ajusta o ícone) */
+        .config-container input[type="datetime-local"] {
+            padding-right: 15px;
+        }
+
+        /* Estilos do botão */
+        .config-container button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .config-container button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="config-container">
+        <h2>🛠️ Configure seu Contador</h2>
+        <form id="configForm">
+            
+            <label for="targetDate">Data e Hora do Evento (Ex: Aniversário, Viagem):</label>
+            <input type="datetime-local" id="targetDate" required>
+
+            <label for="eventReason">Motivo do Evento:</label>
+            <input type="text" id="eventReason" placeholder="Ex: Férias de Verão, Lançamento do Site" required>
+
+            <button type="submit">🚀 Iniciar Contador!</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('configForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const configData = {
+                targetDate: document.getElementById('targetDate').value,
+                eventReason: document.getElementById('eventReason').value,
+            };
+
+            localStorage.setItem('singleCounterConfig', JSON.stringify(configData));
+            window.location.href = 'contador_unico.html';
+        });
+
+        window.onload = function() {
+            const storedConfig = localStorage.getItem('singleCounterConfig');
+            if (storedConfig) {
+                const config = JSON.parse(storedConfig);
+                document.getElementById('targetDate').value = config.targetDate || '';
+                document.getElementById('eventReason').value = config.eventReason || '';
+            }
+        };
+    </script>
+</body>
+</html>
