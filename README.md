@@ -1,3 +1,17 @@
+1. Organização
+Crie uma pasta (Ex: ContadorEstudo).
+
+Coloque os três arquivos (.html e .css) dentro dela.
+
+2. Configuração
+Abra o arquivo config_unico.html no seu navegador.
+
+Preencha a data, hora e o motivo do evento.
+
+Clique em "🚀 Iniciar Contador!".
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Projeto de Estudo: Contador de Data Personalizável
 Este é um projeto particular desenvolvido com o objetivo de estudo e prática em HTML, CSS e JavaScript. Ele serve como uma ferramenta simples para criar uma contagem regressiva personalizada para qualquer evento ou meta.
 
